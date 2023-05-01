@@ -4,7 +4,7 @@ import styles from './Layout.module.css';
 import cn from 'classnames';
 import { Sidebar } from "./Sidebar/Sidebar";
 import { Footer } from "./Footer/Footer";
-import React, { FunctionComponent } from "react";
+import { FunctionComponent } from "react";
 import { AppContextProvider, IAppContext } from "../context/app.context";
 
 const Layout = ({ children }: LayoutProps): JSX.Element => {

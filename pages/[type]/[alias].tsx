@@ -1,4 +1,3 @@
-import React from "react";
 import { withLayout } from "../../layout/Layout";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import axios from 'axios';
@@ -12,7 +11,7 @@ function Course({ menu, page, products }: CourseProps): JSX.Element {
 
     return (
         <>
-            {products && products.length}
+            {products && !!products?.length}
         </>
     );
 }
@@ -28,7 +27,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         });
         paths = paths.concat(menu.flatMap(s => s.pages.map(p => `/${m.route}/${p.alias}`)));
     }
-    
+
     return {
         paths,
         fallback: true,
