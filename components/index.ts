@@ -4,4 +4,5 @@ export * from './Ptag/Ptag';
 export * from './Tag/Tag';
 export * from './Raiting/Raiting';
 export * from './Card/Card';
-export * from './Card/Card';
+export * from './HhData/HhData';
+export * from './Advantages/Advantages';
