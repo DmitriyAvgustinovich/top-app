@@ -36,5 +36,5 @@ export interface TopPageModel {
     createdAt: string;
     updatedAt: string;
     __v: number;
-    hh?: HhData;
+    hh?: HhDataProps;
 }
