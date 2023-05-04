@@ -1,4 +1,4 @@
-import { PtagProps } from "./Ptag.props";
+import { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
 import styles from './Ptag.module.css';
 import cn from 'classnames';
 
@@ -17,3 +17,8 @@ export const Ptag = ({ size = 'small', children, className, ...props }: PtagProp
         </p>
     );
 };
+
+interface PtagProps extends DetailedHTMLProps<HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement> {
+    size?: 'small' | 'medium' | 'large';
+    children: ReactNode
+}

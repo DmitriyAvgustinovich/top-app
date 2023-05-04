@@ -1,8 +1,8 @@
-import { Advantages, Htag, Ptag, Tag } from "../../components";
-import { TopPageComponentProps } from "./TopPageComponent.props";
+import { Advantages, Htag, Tag } from "../../components";
+import { ProductModel } from "../../interfaces/product.interface";
 import styles from './TopPageComponent.module.css';
 import { HhData } from "../../components/HhData/HhData";
-import { TopLevelCategory } from "../../interfaces/page.interface";
+import { TopLevelCategory, TopPageModel } from "../../interfaces/page.interface";
 
 export const TopPageComponent = ({ page, products, firstCategory }: TopPageComponentProps): JSX.Element => {
     if (!page) return <h2>Something went wrong</h2>;
@@ -36,3 +36,9 @@ export const TopPageComponent = ({ page, products, firstCategory }: TopPageCompo
         </div>
     );
 };
+
+interface TopPageComponentProps {
+    firstCategory: TopLevelCategory;
+    page: TopPageModel;
+    products: ProductModel[];
+}

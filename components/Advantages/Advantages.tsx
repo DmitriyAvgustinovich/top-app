@@ -1,4 +1,4 @@
-import { AdvantagesProps } from './Advantages.props';
+import { TopPageAdvantage } from "../../interfaces/page.interface";
 import styles from './Advantages.module.css';
 import cn from 'classnames';
 import CheckIcon from './check.svg';
@@ -17,3 +17,7 @@ export const Advantages = ({ advantages }: AdvantagesProps): JSX.Element => {
         </>
     );
 };
+
+interface AdvantagesProps {
+    advantages: TopPageAdvantage[];
+}

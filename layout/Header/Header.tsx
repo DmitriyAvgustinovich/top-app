@@ -1,4 +1,4 @@
-import { HeaderProps } from "./Header.props";
+import { DetailedHTMLProps, HTMLAttributes } from "react";
 import styles from './Header.module.css';
 import cn from 'classnames';
 
@@ -9,3 +9,5 @@ export const Header = ({ ...props }: HeaderProps): JSX.Element => {
         </div>
     );
 };
+
+interface HeaderProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> { }

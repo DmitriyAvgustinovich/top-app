@@ -1,4 +1,4 @@
-import { HhDataProps } from './HhData.props';
+import { HhDataProps } from "../../interfaces/page.interface";
 import styles from './HhData.module.css';
 import cn from 'classnames';
 import { Card } from "../Card/Card";
@@ -48,3 +48,5 @@ export const HhData = ({ count, juniorSalary, middleSalary, seniorSalary }: HhDa
         </div>
     );
 };
+
+interface HhData extends HhDataProps { }

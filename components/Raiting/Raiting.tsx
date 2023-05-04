@@ -1,4 +1,4 @@
-import { RaitingProps } from "./Raiting.props";
+import { DetailedHTMLProps, HTMLAttributes } from "react";
 import styles from './Raiting.module.css';
 import cn from 'classnames';
 import StarIcon from './star.svg';
@@ -60,3 +60,9 @@ export const Raiting = ({ isEditable = false, raiting, setRaiting, ...props }: R
         </div>
     );
 };
+
+interface RaitingProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+    isEditable?: boolean;
+    raiting: number;
+    setRaiting?: (raiting: number) => void;
+}

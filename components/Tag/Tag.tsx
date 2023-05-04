@@ -1,4 +1,4 @@
-import { TagProps } from "./Tag.props";
+import { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
 import styles from './Tag.module.css';
 import cn from 'classnames';
 
@@ -23,3 +23,10 @@ export const Tag = ({ size = 'small', children, color = 'ghost', href, className
         </div>
     );
 };
+
+interface TagProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+    size?: 'small' | 'medium';
+    children: ReactNode;
+    color?: 'ghost' | 'red' | 'grey' | 'green' | 'primary';
+    href?: string;
+}
