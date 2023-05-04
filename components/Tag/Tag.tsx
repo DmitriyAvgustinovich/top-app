@@ -2,7 +2,7 @@ import { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
 import styles from './Tag.module.css';
 import cn from 'classnames';
 
-export const Tag = ({ size = 'small', children, color = 'ghost', href, className, ...props }: TagProps): JSX.Element => {
+export const Tag = ({ size = 'small', children, color = 'ghost', href, className }: TagProps): JSX.Element => {
     return (
         <div
             className={cn(styles.tag, className, {
@@ -13,9 +13,7 @@ export const Tag = ({ size = 'small', children, color = 'ghost', href, className
                 [styles.grey]: color == 'grey',
                 [styles.green]: color == 'green',
                 [styles.primary]: color == 'primary',
-            })}
-            {...props}
-        > {
+            })}> {
                 href
                     ? <a href={href}>{children}</a>
                     : <>{children}</>
