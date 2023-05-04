@@ -1,6 +1,6 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 import styles from './Sort.module.css';
-import SortIcon from './Sort.svg';
+import SortIcon from './sort.svg';
 import cn from 'classnames';
 
 export const Sort = ({ sort, setSort, className }: SortProps): JSX.Element => {
