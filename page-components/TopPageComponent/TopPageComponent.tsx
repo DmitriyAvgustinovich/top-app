@@ -5,6 +5,8 @@ import { HhData } from "../../components/HhData/HhData";
 import { TopLevelCategory } from "../../interfaces/page.interface";
 
 export const TopPageComponent = ({ page, products, firstCategory }: TopPageComponentProps): JSX.Element => {
+    if (!page) return <h2>Something went wrong</h2>;
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.title}>
