@@ -1,4 +1,4 @@
-import { HtagProps } from "./Htag.props";
+import { ReactNode } from "react";
 import styles from './Htag.module.css';
 
 export const Htag = ({ tag, children }: HtagProps): JSX.Element => {
@@ -13,3 +13,8 @@ export const Htag = ({ tag, children }: HtagProps): JSX.Element => {
             return <></>;
     }
 };
+
+interface HtagProps {
+    tag: 'h1' | 'h2' | 'h3';
+    children: ReactNode
+}

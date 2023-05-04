@@ -1,10 +1,10 @@
-import { RaitingProps } from "./Raiting.props";
+import { DetailedHTMLProps, HTMLAttributes } from "react";
 import styles from './Raiting.module.css';
 import cn from 'classnames';
 import StarIcon from './star.svg';
 import { useEffect, useState, KeyboardEvent } from "react";
 
-export const Raiting = ({ isEditable = false, raiting, setRaiting, ...props }: RaitingProps): JSX.Element => {
+export const Raiting = ({ isEditable = false, raiting, setRaiting }: RaitingProps): JSX.Element => {
     const [raitingArray, setRaitingArray] = useState<JSX.Element[]>(new Array(5).fill(<></>));
 
     useEffect(() => {
@@ -55,8 +55,12 @@ export const Raiting = ({ isEditable = false, raiting, setRaiting, ...props }: R
     };
 
     return (
-        <div {...props}>
-            {raitingArray.map((raiting, index) => (<span key={index}>{raiting}</span>))}
-        </div>
+        <div>{raitingArray.map((raiting, index) => (<span key={index}>{raiting}</span>))}</div>
     );
 };
+
+interface RaitingProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+    isEditable?: boolean;
+    raiting: number;
+    setRaiting?: (raiting: number) => void;
+}

@@ -1,5 +1,5 @@
 import { Header } from "./Header/Header";
-import { LayoutProps } from "./Layout.props";
+import { ReactNode } from "react";
 import styles from './Layout.module.css';
 import cn from 'classnames';
 import { Sidebar } from "./Sidebar/Sidebar";
@@ -31,3 +31,7 @@ export const withLayout = <T extends Record<string, unknown> & IAppContext>(Comp
         );
     };
 };
+
+interface LayoutProps {
+    children: ReactNode
+}
