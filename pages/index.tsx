@@ -1,4 +1,4 @@
-import { Button, Htag, Input, Ptag, Raiting, Tag, Textarea } from "../components";
+import { Button, Htag, Input, Ptag, Rating, Tag, Textarea } from "../components";
 import { useState } from "react";
 import { withLayout } from "../layout/Layout";
 import { GetStaticProps } from "next";
@@ -6,7 +6,7 @@ import axios from 'axios';
 import { MenuItem } from "../interfaces/menu.interface";
 
 function Home({ menu }: HomeProps): JSX.Element {
-  const [raiting, setRaiting] = useState<number>(4);
+  const [rating, setRating] = useState<number>(4);
 
   return (
     <>
@@ -20,7 +20,7 @@ function Home({ menu }: HomeProps): JSX.Element {
       <Tag size='medium' color='red'>Red</Tag>
       <Tag size='small' color='green'>Green</Tag>
       <Tag color='primary'>Green</Tag>
-      <Raiting raiting={raiting} isEditable setRaiting={setRaiting} />
+      <Rating rating={rating} isEditable setRating={setRating} />
       <Input placeholder='тест' />
       <Textarea placeholder='тест' />
     </>

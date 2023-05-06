@@ -1,22 +1,22 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
-import styles from './Raiting.module.css';
+import styles from './Rating.module.css';
 import cn from 'classnames';
 import StarIcon from './star.svg';
 import { useEffect, useState, KeyboardEvent } from "react";
 
-export const Raiting = ({ isEditable = false, raiting, setRaiting }: RaitingProps): JSX.Element => {
-    const [raitingArray, setRaitingArray] = useState<JSX.Element[]>(new Array(5).fill(<></>));
+export const Rating = ({ isEditable = false, rating, setRating }: RatingProps): JSX.Element => {
+    const [ratingArray, setRatingArray] = useState<JSX.Element[]>(new Array(5).fill(<></>));
 
     useEffect(() => {
-        constructRaiting(raiting);
-    }, [raiting]);
+        constructRating(rating);
+    }, [rating]);
 
-    const constructRaiting = (currentRaiting: number) => {
-        const updatedArray = raitingArray.map((raiting: JSX.Element, index: number) => {
+    const constructRating = (currentRating: number) => {
+        const updatedArray = ratingArray.map((rating: JSX.Element, index: number) => {
             return (
                 <span
                     className={cn(styles.star, {
-                        [styles.filled]: index < currentRaiting,
+                        [styles.filled]: index < currentRating,
                         [styles.editable]: isEditable
                     })}
                     onMouseEnter={() => changeDisplay(index + 1)}
@@ -30,37 +30,37 @@ export const Raiting = ({ isEditable = false, raiting, setRaiting }: RaitingProp
                 </span>
             );
         });
-        setRaitingArray(updatedArray);
+        setRatingArray(updatedArray);
     };
 
     const changeDisplay = (index: number) => {
         if (!isEditable) {
             return;
         }
-        constructRaiting(index);
+        constructRating(index);
     };
 
     const onClick = (index: number) => {
-        if (!isEditable || !setRaiting) {
+        if (!isEditable || !setRating) {
             return;
         }
-        setRaiting(index);
+        setRating(index);
     };
 
     const handleSpace = (index: number, e: KeyboardEvent<SVGElement>) => {
-        if (e.code != 'Space' || !setRaiting) {
+        if (e.code != 'Space' || !setRating) {
             return;
         }
-        setRaiting(index);
+        setRating(index);
     };
 
     return (
-        <div>{raitingArray.map((raiting, index) => (<span key={index}>{raiting}</span>))}</div>
+        <div>{ratingArray.map((rating, index) => (<span key={index}>{rating}</span>))}</div>
     );
 };
 
-interface RaitingProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+interface RatingProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
     isEditable?: boolean;
-    raiting: number;
-    setRaiting?: (raiting: number) => void;
+    rating: number;
+    setRating?: (rating: number) => void;
 }
