@@ -3,11 +3,18 @@ import { ProductModel } from "../../interfaces/product.interface";
 import styles from './TopPageComponent.module.css';
 import { HhData } from "../../components/HhData/HhData";
 import { TopLevelCategory, TopPageModel } from "../../interfaces/page.interface";
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import { SortReducer } from "./sortReducer";
 
 export const TopPageComponent = ({ page, products, firstCategory }: TopPageComponentProps): JSX.Element => {
     const [{ products: sortedProducts, sort }, dispatchSort] = useReducer(SortReducer, { products, sort: SortEnum.Rating });
+
+    useEffect(() => {
+        dispatchSort({
+            type: 'reset',
+            initialState: products
+        });
+    }, [products]);
 
     if (!page) return <h2>Something went wrong</h2>;
 
