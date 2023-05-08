@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, HTMLAttributes, useRef, useState } from "react";
+import { DetailedHTMLProps, ForwardedRef, HTMLAttributes, forwardRef, useRef, useState } from "react";
 import styles from './Product.module.css';
 import cn from 'classnames';
 import { ProductModel } from "../../interfaces/product.interface";
@@ -11,10 +11,22 @@ import { Divider } from "../Divider/Divider";
 import Image from "next/image";
 import { Review } from "../Review/Review";
 import { ReviewForm } from "../ReviewForm/ReviewForm";
+import { motion } from 'framer-motion';
 
-export const Product = ({ product, className }: ProductProps): JSX.Element => {
+export const Product = motion(forwardRef(({ product, className }: ProductProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
     const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
     const reviewRef = useRef<HTMLDivElement>(null);
+
+    const variants = {
+        visible: {
+            opacity: 1,
+            height: 'auto'
+        },
+        hidden: {
+            opacity: 0,
+            height: 0
+        }
+    };
 
     const scrollToReview = () => {
         setIsReviewOpened(true);
@@ -25,7 +37,7 @@ export const Product = ({ product, className }: ProductProps): JSX.Element => {
     };
 
     return (
-        <div className={className}>
+        <div className={className} ref={ref}>
             <Card className={styles.product}>
                 <div className={styles.logo}>
                     <Image
@@ -116,23 +128,20 @@ export const Product = ({ product, className }: ProductProps): JSX.Element => {
                 </div>
             </Card>
 
-            <Card color='blue' className={cn(styles.reviews, {
-                [styles.opened]: isReviewOpened,
-                [styles.closed]: !isReviewOpened,
-            })}
-                ref={reviewRef}
-            >
-                {product.reviews.map(r => (
-                    <div key={r._id}>
-                        <Review review={r} />
-                        <Divider />
-                    </div>
-                ))}
-                <ReviewForm productId={product._id} />
-            </Card>
+            <motion.div animate={isReviewOpened ? 'visible' : 'hidden'} variants={variants} initial='hidden'>
+                <Card color='blue' className={styles.reviews} ref={reviewRef}>
+                    {product.reviews.map(r => (
+                        <div key={r._id}>
+                            <Review review={r} />
+                            <Divider />
+                        </div>
+                    ))}
+                    <ReviewForm productId={product._id} />
+                </Card>
+            </motion.div>
         </div>
     );
-};
+}));
 
 interface ProductProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
     product: ProductModel;
