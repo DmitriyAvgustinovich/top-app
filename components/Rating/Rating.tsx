@@ -26,7 +26,7 @@ export const Rating = forwardRef(({ isEditable = false, error, rating, setRating
                 >
                     <StarIcon
                         tabIndex={isEditable ? 0 : -1}
-                        onKeyDown={(e: KeyboardEvent<SVGElement>) => isEditable && handleSpace(index + 1, e)}
+                        onKeyDown={(e: KeyboardEvent<SVGElement>) => handleKey(index + 1, e)}
                     />
                 </span>
             );
@@ -48,11 +48,22 @@ export const Rating = forwardRef(({ isEditable = false, error, rating, setRating
         setRating(index);
     };
 
-    const handleSpace = (index: number, e: KeyboardEvent<SVGElement>) => {
-        if (e.code != 'Space' || !setRating) {
+    const handleKey = (index: number, e: KeyboardEvent<SVGElement>) => {
+        if (!isEditable || !setRating) {
             return;
         }
-        setRating(index);
+        if (e.code == 'ArrowRight' || e.code == 'ArrowUp') {
+            if (!rating) {
+                setRating(1);
+            } else {
+                e.preventDefault();
+                setRating(rating < 5 ? rating + 1 : 5);
+            }
+        }
+        if (e.code == 'ArrowLeft' || e.code == 'ArrowDown') {
+            e.preventDefault();
+            setRating(rating > 1 ? rating - 1 : 1);
+        }
     };
 
     return (
